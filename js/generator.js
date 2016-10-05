@@ -31,15 +31,6 @@ var Round = {
 			this.genConcept();
 		}
 	},
-	// checkIfNew: function(current, previous) {
-	// 	for(var i = 0; i < current.length; i++){
-	// 	    for(var j = 0; j < previous.length; j++) {
-	// 	        if(current[i] === previous[j]){
-	// 	            return true;
-	// 	        }
-	// 	    }
-	// 	}
-	// },
 	checkIfRepeat: function() {
 		for(var i = 0; i < this.concept.length; i++){
 		    for(var j = 0; j < this.prevConcept.length; j++) {
