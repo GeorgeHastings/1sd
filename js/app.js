@@ -2,8 +2,8 @@
 
 var Dictionary = {
 	typology: ['high_end', 'low-brow','conservative', 'revolutionary', 'millennial'],
-	brand: ['toilet_paper','cars','sports_apparel', 'technology', 'dog_food','candy'],
-	constraint: ['with_only_sound','with_six_words','with_an_haiku','strictly_location-based']
+	brand: ['toilet_paper','car','sports_apparel', 'technology', 'dog_food','candy'],
+	constraint: ['with_only_sound','with_six_words','with_a_haiku','strictly_location-based']
 };
 
 var Interface = {
@@ -48,7 +48,7 @@ var Round = {
 	},
 	renderConcept: function() {
 
-		var str = "Make_a_6_seconds_video_for_a_"+this.concept[0]+"_"+this.concept[1]+"_brand,_"+this.concept[2]+".";
+		var str = "Make_a_6_second_video_for_a_"+this.concept[0]+"_"+this.concept[1]+"_brand,_"+this.concept[2]+".";
 		//var str = this.concept[0] + 'xxx' + this.concept[1] + 'xxx' + this.concept[2];
 		Interface.output.innerHTML = '';
 		for(var i = 0; i < str.length; i++) {

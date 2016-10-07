@@ -32,6 +32,7 @@ body {
 	margin: 0 auto;
 	left: 0;
 	right: 0;
+  padding: 50px 50px;
 	z-index: 1;
 	background-size: cover;
 
@@ -214,11 +215,11 @@ p {
 	// font-family: 'Heebo', sans-serif;
 
 	span {
-		display: inline-block;
+		display: inline;
 		opacity: 0;
 		animation: animate .3s $ease;
 		animation-fill-mode: forwards;
-		@for $i from 1 through 50{
+		@for $i from 1 through 100{
 		  &:nth-child(#{$i}){
 		    animation-delay:#{$i* .02s};
 		  }
