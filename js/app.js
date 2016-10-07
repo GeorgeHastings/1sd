@@ -1,8 +1,9 @@
 'use strict';
 
 var Dictionary = {
-	objects: ['AI', 'Advertising','Analytics', 'Art', 'Audio','Banking', 'Bots', 'Climates', 'Collaboration','Commerce','Communication','Communities','Crowdfunding','Currency','Data','Dating', 'Delivery', 'Decision-Making','Design','Dining','Discovery','Drones','E-commerce','Economies','Education', 'Energy', 'Entertainment','Environments','Evangelization','Events','Farming','Fashion', 'Fitness', 'Forecasting','Gaming', 'Gender', 'Governance','Housing','Healthcare','Investing', 'Journalism', 'Labor', 'Learning', 'Leisure', 'Living', 'Manufacturing', 'Mapping', 'Medicine', 'Memory','Messaging','Music','Neighborhoods','Networking','News','Notifications', 'Nutrition', 'Optimization','Payments', 'Personalization', 'Photostreaming','Privacy','Productivity', 'Publishing','Recommendations', 'Relationships', 'Search','Security','Sharing','Shopping', 'Sports', 'Storytelling', 'Storage', 'Streaming','Transportation', 'Travel', 'Video', 'VR', 'Wearables','Workspaces'],
-	descriptors: ['Adaptive','Adult','Agile', 'Affordable', 'Ambient','Anonymous','Automated','Bio', 'Branded', 'Collective','Connected','Contextual', 'Conversational', 'Continuous','Curated', 'Custom', 'Crowdsourced', 'Dynamic', 'Embeddable', 'Encrypted', 'Enterprise', 'Ephemeral', 'Exclusive', 'Fantasy', 'Free', 'Gamified','Genetic', 'Global','Guerilla', 'Grassroots', 'Humanized', 'Haptic', 'Hyperlocal','Incremental','Instantaneous','Interactive','Interstitial','Localized','Macro','Meta','Micro','Minimal','Mobile', 'Narrated', 'On-demand','Open-Source','P2P','Predictive','Premium','Progressive','Rapid','Real-time','Self-perpetuating','Semantic','Serendipitous','Shoppable','Social','Stealth','Sustainable', 'Synthetic', 'Targeted','Ubiquitous','Utilitarian', 'Virtual']
+	typology: ['high_end', 'low-brow','conservative', 'revolutionary', 'millennial'],
+	brand: ['toilet_paper','cars','sports_apparel', 'technology', 'dog_food','candy'],
+	constraint: ['with_only_sound','with_six_words','with_an_haiku','strictly_location-based']
 };
 
 var Interface = {
@@ -15,16 +16,17 @@ var Interface = {
 };
 
 var Round = {
-	initialTime: 30,
-	currentTime: 30,
+	initialTime: 120,
+	currentTime: 120,
 	concept: [],
 	prevConcept: [],
 	getWord: function (wordset) {
 		return wordset[(Math.floor(Math.random() * (wordset.length - 0)) + 0).toFixed(0)];
 	},
 	genConcept: function() {
-		this.concept = [this.getWord(Dictionary.descriptors), this.getWord(Dictionary.descriptors), this.getWord(Dictionary.objects)];
+		this.concept = [this.getWord(Dictionary.typology), this.getWord(Dictionary.brand), this.getWord(Dictionary.constraint)];
 
+		/*
 		if(this.concept[0] === this.concept[1]) {
 			this.concept[0] = this.getWord(Dictionary.descriptors);
 		}
@@ -32,6 +34,8 @@ var Round = {
 		if(this.checkForRepeatWord() === true) {
 			this.genConcept();
 		}
+		*/
+
 	},
 	checkForRepeatWord: function() {
 		for(var i = 0; i < this.concept.length; i++){
@@ -43,7 +47,9 @@ var Round = {
 		}
 	},
 	renderConcept: function() {
-		var str = this.concept[0] + '_' + this.concept[1] + '_' + this.concept[2];
+
+		var str = "Make_a_6_seconds_video_for_a_"+this.concept[0]+"_"+this.concept[1]+"_brand,_"+this.concept[2]+".";
+		//var str = this.concept[0] + 'xxx' + this.concept[1] + 'xxx' + this.concept[2];
 		Interface.output.innerHTML = '';
 		for(var i = 0; i < str.length; i++) {
 			var span = document.createElement('span');

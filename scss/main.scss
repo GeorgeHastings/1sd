@@ -275,7 +275,7 @@ p {
 	transform: translateY(-50%) rotateZ(90deg) rotateX(180deg);
 
 	&.counting path{
-		animation: countdown 30s linear infinite;
+		animation: countdown 120s linear infinite;
 	}
 
 	svg {
