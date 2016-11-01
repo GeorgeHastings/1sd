@@ -23,7 +23,6 @@ var Magnetic = {
     return xPos;
   },
   positionElements: function() {
-    console.log(Magnetic.getScrollTop());
     var elements = Magnetic.elements[0];
     for (var i = 0; i < elements.length; i++) {
       var element = document.getElementById(Magnetic.elements[0][i].id);
@@ -39,7 +38,6 @@ var Magnetic = {
   },
   init: function() {
     this.elements.push(arguments);
-    console.log(this.elements);
     this.bindEvents();
   }
 };

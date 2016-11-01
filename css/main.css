@@ -5,12 +5,17 @@ html,
 body {
   margin: 0;
   width: 100%;
-  background-color: #101319; }
+  background-color: #101319;
+  -webkit-font-smoothing: antialiased; }
 
 body {
   font: 18px 'Rubik', sans-serif;
   color: #fefefe;
   text-align: center; }
+  @media screen and (max-width: 500px) {
+    body {
+      font-size: 16px;
+      padding: 0 20px; } }
 
 #wrapper {
   position: absolute;
@@ -23,6 +28,9 @@ body {
 section {
   display: block;
   padding: 100px 0; }
+  @media screen and (max-width: 500px) {
+    section {
+      padding: 50px 20px; } }
 
 .header {
   padding: 30px 50px; }
@@ -40,16 +48,21 @@ section {
 
 h1 {
   display: block;
-  font-size: 150px; }
+  font-size: 8.33em; }
 
 h2 {
+  font-size: 1.618em;
   margin-bottom: 50px;
   color: #fff;
   line-height: 140%; }
+  @media screen and (max-width: 500px) {
+    h2 {
+      font-size: 1.32em;
+      padding: 0 20px; } }
 
 h3 {
   display: inline-block;
-  font-size: 16px;
+  font-size: 0.88em;
   text-transform: uppercase;
   color: #5A6987; }
 
@@ -68,13 +81,7 @@ p {
   margin: 0 auto; }
 
 .share {
-  text-align: center;
-  background-color: #101319; }
-  .share h2 {
-    color: #5A6987; }
-  .share a {
-    background-color: #1b95e0;
-    color: #fff; }
+  text-align: center; }
 
 .footer {
   padding: 30px 0;
@@ -90,7 +97,19 @@ p {
   padding: 15px 40px;
   color: #252B37;
   background-color: #fff;
-  border-radius: 2px; }
+  border-radius: 2px;
+  text-decoration: none;
+  transition: box-shadow 0.3s cubic-bezier(0.52, 0.01, 0.16, 1); }
+  .btn.btn-white {
+    background-color: #fff;
+    color: #252B37; }
+    .btn.btn-white:hover {
+      box-shadow: 0 20px 50px -10px rgba(255, 255, 255, 0.33); }
+  .btn.btn-blue {
+    background-color: #1b95e0;
+    color: #fff; }
+    .btn.btn-blue:hover {
+      box-shadow: 0 20px 50px -10px rgba(27, 149, 224, 0.5); }
 
 .cards {
   position: fixed;
@@ -127,24 +146,40 @@ p {
   display: flex;
   flex-flow: column;
   justify-content: space-between;
+  align-items: center;
   height: 100%;
   padding: 50px 0; }
+  .round-card .logo {
+    opacity: 0; }
 
 .lights-on {
   background-color: #fff; }
   .lights-on .concept {
     color: #CBD1DC; }
+  .lights-on .button {
+    border: 1px solid #5A6987; }
+  .lights-on .logo {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    color: #CBD1DC; }
+    .lights-on .logo a {
+      text-decoration: none;
+      color: inherit; }
+    .lights-on .logo span {
+      background-color: #CBD1DC;
+      color: #fff; }
   .lights-on .button:hover {
     color: #000; }
 
 .concept {
   margin: 0;
-  font-size: 5vw;
+  font-size: 5.5vw;
+  padding: 0 1vw;
   font-weight: normal;
   line-height: 140%;
   text-align: center; }
   .concept span {
-    display: inline-block;
+    display: inline;
     opacity: 0;
     animation: animate 0.3s cubic-bezier(0.52, 0.01, 0.16, 1);
     animation-fill-mode: forwards; }
@@ -256,6 +291,7 @@ p {
   100% {
     opacity: 1;
     transform: scaleX(1); } }
+
 .timer {
   text-align: center;
   color: #5A6987;
@@ -263,15 +299,16 @@ p {
   transform: translateY(-50%); }
 
 .button {
-  display: inline-block;
+  display: table;
+  padding: 1vw 2vw;
   text-align: center;
   color: #5A6987;
   cursor: pointer;
+  border-radius: 3px;
   text-transform: uppercase; }
   .button:hover {
     color: #fff; }
 
-.timer,
 .button {
   font-size: 1.2vw; }
 
@@ -294,6 +331,7 @@ p {
   .circle-graph path {
     padding-bottom: 100%;
     stroke-dasharray: 472; }
+
 @keyframes countdown {
   0% {
     stroke-dashoffset: 472; }
@@ -304,8 +342,42 @@ p {
   100% {
     stroke-dashoffset: 0;
     stroke: #F11E54; } }
+
 .round-card,
 h1, h3,
 .timer,
 .button {
   transition: background-color 0.3s cubic-bezier(0.52, 0.01, 0.16, 1); }
+
+.rotate-block {
+  display: none;
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff; }
+  @media screen and (max-width: 500px) {
+    .rotate-block {
+      display: flex;
+      align-items: center;
+      justify-content: center; } }
+
+.rotate-phone {
+  width: 45px;
+  height: 85px;
+  border-top: 6px solid #3F4A5F;
+  border-bottom: 6px solid #3F4A5F;
+  border-left: 2px solid #3F4A5F;
+  border-right: 2px solid #3F4A5F;
+  border-radius: 3px;
+  animation: rotate 2s cubic-bezier(0.52, 0.01, 0.16, 1) infinite; }
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg) translate3d(0, 0, 1px); }
+  50% {
+    transform: rotateZ(90deg) translate3d(0, 0, 1px); }
+  100% {
+    transform: rotateZ(90deg) translate3d(0, 0, 1px); } }

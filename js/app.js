@@ -1,15 +1,14 @@
 'use strict';
 
 var Dictionary = {
-	objects: ['AI', 'Advertising','Analytics', 'Art', 'Audio','Banking', 'Bots', 'Climates', 'Collaboration','Commerce','Communication','Communities','Crowdfunding','Currency','Data','Dating', 'Delivery', 'Decision-Making','Design','Dining','Discovery','Drones','E-commerce','Economies','Education', 'Energy', 'Entertainment','Environments','Evangelization','Events','Farming','Fashion', 'Fitness', 'Forecasting','Gaming', 'Gender', 'Governance','Housing','Healthcare','Investing', 'Journalism', 'Labor', 'Learning', 'Leisure', 'Living', 'Manufacturing', 'Mapping', 'Medicine', 'Memory','Messaging','Music','Neighborhoods','Networking','News','Notifications', 'Nutrition', 'Optimization','Payments', 'Personalization', 'Photostreaming','Privacy','Productivity', 'Publishing','Recommendations', 'Relationships', 'Search','Security','Sharing','Shopping', 'Sports', 'Storytelling', 'Storage', 'Streaming','Transportation', 'Travel', 'Video', 'VR', 'Wearables','Workspaces'],
-	descriptors: ['Adaptive','Adult','Agile', 'Affordable', 'Ambient','Anonymous','Automated','Bio', 'Branded', 'Collective','Connected','Contextual', 'Conversational', 'Continuous','Curated', 'Custom', 'Crowdsourced', 'Dynamic', 'Embeddable', 'Encrypted', 'Enterprise', 'Ephemeral', 'Exclusive', 'Fantasy', 'Free', 'Gamified','Genetic', 'Global','Guerilla', 'Grassroots', 'Humanized', 'Haptic', 'Hyperlocal','Incremental','Instantaneous','Interactive','Interstitial','Localized','Macro','Meta','Micro','Minimal','Mobile', 'Narrated', 'On-demand','Open-Source','P2P','Predictive','Premium','Progressive','Rapid','Real-time','Self-perpetuating','Semantic','Serendipitous','Shoppable','Social','Stealth','Sustainable', 'Synthetic', 'Targeted','Ubiquitous','Utilitarian', 'Virtual']
+	objects: ['AI', 'Advertising','Analytics', 'Art', 'Audio','Banking', 'Climates', 'Chatbots', 'Collaboration','Commerce','Communication','Communities', 'Credit','Currency','Dating', 'Delivery', 'Decision-Making','Design','Dining','Discovery','Drones','E-commerce','Economies','Education', 'Energy', 'Entertainment','Environments','Events','Farming','Fashion', 'Fitness', 'Forecasting','Gaming', 'Gender', 'Governance', 'Happiness', 'Housing','Healthcare','Investing', 'Interiors', 'Journalism', 'Labor', 'Learning', 'Leisure', 'Lifestyles', '3d Printing', 'Maps', 'Medicine', 'Memory','Messaging','Music','Neighborhoods','Networking','News','Notifications', 'Nutrition', 'Optimization','Payments', 'Personalization', 'Photostreaming','Privacy','Productivity', 'Publishing','Recommendations', 'Relationships', 'Sales', 'Search','Security','Sharing','Shopping', 'Sports', 'Storytelling', 'Storage', 'Streaming','Transportation', 'Travel', 'Video', 'Voting','VR', 'Wearables','Workspaces'],
+	descriptors: ['Adaptive','Adult','Agile', 'Affordable', 'Artisanal', 'Ambient','Anonymous','Automated', 'Augmented', 'Beautiful', 'Bio', 'Branded', 'Code-free', 'Collective', 'Connected','Contextual', 'Conversational', 'Continuous','Curated', 'Custom', 'Crowdsourced', 'Delightful', 'Dynamic', 'Embeddable', 'Ethical', 'Encrypted', 'Enterprise', 'Ephemeral', 'Exclusive', 'Expressive', 'Fantasy', 'Gamified','Genetic', 'Global','Guerilla', 'Grassroots', 'Handcrafted', 'Humanized', 'Hackable', 'Haptic', 'Hyperlocal','Incremental','Instantaneous','Interactive','Interstitial','Localized', 'Live', 'Luxury', 'Macro','Meta','Micro','Minimal','Mobile', 'Narrated', 'Natural', 'On-demand', 'Organic', 'Open-Source','P2P', 'Playful', 'Portable', 'Predictive','Premium','Progressive', 'Professional', 'Rapid', 'Random', 'Real-time','Self-perpetuating','Semantic','Serendipitous','Shoppable','Social','Stealth','Sustainable', 'Spherical', 'Subscription-based', 'Synthetic', 'Syncronized', 'Targeted','Ubiquitous', 'Utilitarian', 'Virtual', 'Zero-cost']
 };
 
 var Interface = {
 	wrapper: document.getElementById('wrapper'),
 	trigger: document.querySelector('[osd-trigger]'),
 	output: document.querySelector('[osd-output]'),
-	timer: document.querySelector('[osd-timer]'),
 	circle: document.getElementById('circle'),
 	button: document.querySelector('.button')
 };
@@ -92,27 +91,18 @@ var Round = {
 		_timer.currentTime = _timer.initialTime;
 	    _timer.newTimer = setInterval(function () {
 	    	_timer.currentTime--;
-	    	_timer.renderTimer();
-
-	    	if(_timer.currentTime < 11) {
-	    		Interface.timer.style.color = '#F11E54';
-	    	}
-	    	else {
-	    		Interface.timer.style.color = '#5A6987';
-	    	}
 
 	    	if(_timer.currentTime === 0) {
-					Interface.timer.style.color = '#5A6987';
+					var ping = document.createElement('audio');
 	    		clearInterval(_timer.newTimer);
 	    		Round.storePrevConcept();
 					Round.resetAtmos();
+		      ping.setAttribute('src', 'https://www.freesound.org/data/previews/91/91926_7037-lq.mp3');
+		      ping.play();
 					// Round.init();
 	    		// end round here
 	    	}
 	    }, 1000);
-	},
-	renderTimer: function() {
-		Interface.timer.innerHTML = this.currentTime;
 	},
 	resetTimer: function() {
 		clearInterval(this.newTimer);
@@ -120,7 +110,6 @@ var Round = {
 	},
 	init: function() {
 		this.resetTimer();
-		this.renderTimer();
 		this.genConcept();
 		this.renderConcept();
 		this.renderAtmos();
@@ -135,8 +124,3 @@ Interface.trigger.addEventListener('click', function() {
 	Round.storePrevConcept();
 	Round.init();
 });
-
-// setInterval(function(){
-// 	Round.endRound();
-// 	Round.init();
-// }, 10);
